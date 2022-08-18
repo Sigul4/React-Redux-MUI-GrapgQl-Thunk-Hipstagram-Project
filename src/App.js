@@ -47,7 +47,7 @@ const Content = ({userStatus}) =>{
 const CContent          = connect(state => ({userStatus: state?.auth?.token}))  (Content)
 const CLoginCategory    = connect(null,     {onLogin: actionFullLogin})       (LoginPage)
 const CRegisterCategory = connect(null,     {onLogin: actionFullRegister})    (RegisterPage)
-const CHeader           = connect(state => ({userNick: state?.auth?.payload?.sub?.acl[1], userId:state?.auth?.payload?.sub?.id, requiredNicknames: state?.promise?.requiredNicknames?.payload }),{Logout: actionAuthLogout,onChooseNick: actionUserFind}) (Header)
+const CHeader           = connect(state => ({userNick: state?.auth?.payload?.sub?.acl[1], userId:state?.auth?.payload?.sub?.id, userAva:state?.promise?.aboutMe?.payload, requiredNicknames: state?.promise?.requiredNicknames?.payload }),{Logout: actionAuthLogout,onChooseNick: actionUserFind}) (Header)
 const CProfilePage      = connect(state => ({props: state?.promise?.ProfileInf?.payload, posts: state?.promise?.ProfilePosts?.payload, aboutMe: state?.promise?.aboutMe?.payload }), {onLoadUserInf: actionProfileInf, onLoadUserPosts:actionProfilePosts, postLike:actionAddLike, postUnlike:actionRemoveLike, onFollow: actionFollow, onUnfollow: actionUnfollow, onProfileChange:actionChangeProfile})(UserPage)
 const CPostsPage        = connect(state => ({Post: state?.promise?.AllPosts?.payload, aboutMe: state?.promise?.aboutMe?.payload}), {onPostLoad: actionAllPosts, postLike:actionAddLike, postUnlike:actionRemoveLike}) (ContentPage)
 const CPostPage         = connect(state => ({post: state?.promise?.PostInf?.payload,  aboutMe: state?.promise?.aboutMe?.payload}), {onLoad:actionPostFind, postLike:actionAddLike, postUnlike:actionRemoveLike, changePostsToDelete:deletePost})(PostPage)

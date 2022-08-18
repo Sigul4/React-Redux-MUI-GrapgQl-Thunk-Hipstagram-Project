@@ -48,7 +48,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 
-export default function Header({userNick, userId, requiredNicknames,Logout, onChooseNick}) {
+export default function Header({userNick, userId,userAva, requiredNicknames,Logout, onChooseNick}) {
   console.log('userData',userNick, userId)
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -197,7 +197,7 @@ export default function Header({userNick, userId, requiredNicknames,Logout, onCh
                 userNick
                 ? <CardHeader
                 avatar={
-                <Avatar sx={{ bgcolor: red[500],width: 50, height: 50, }} alt='' aria-label="recipe" src="http://pics.livejournal.com/ucmopucm/pic/000a610c"/>
+                <Avatar sx={{ bgcolor: red[500],width: 50, height: 50, }} alt='' aria-label="recipe" src={`http://hipstagram.node.ed.asmer.org.ua/${userAva? userAva.avatar.url:''}`}/>
                 }/> 
                 : <AccountCircle style={{width: "50px", height: "50px"}}/>} 
             </Link>
