@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  width: 100%;
 }
 
 .App-logo {
@@ -35,4 +36,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.ContentPage{
+  display: flex;
+  justify-content: center;
+}
+
+.PostList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+a {
+  text-decoration: none !important;
 }

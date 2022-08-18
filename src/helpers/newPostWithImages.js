@@ -7,8 +7,8 @@ const newPostWithImages = async (title, text, images, _id) => {
         const gqlQuery = 
         `mutation newPostWithImages($text:String, $title:String, $images:[ImageInput]){
             PostUpsert(post:{title: $title, text: $text, images: $images}){
-                _id title text images{_id url} createdAt comments{_id createdAt text likesCount owner{_id login} answerTo{_id}} directs{text} likesCount 
-            owner{_id login} likes{_id owner{_id}}
+                _id title text images{_id url} createdAt comments{_id createdAt text likesCount owner{_id nick login avatar{_id url}} answerTo{_id}} directs{text} likesCount 
+            owner{_id login nick avatar{_id url}} likes{_id owner{_id}}
             }
         }`
         const gqlPromise = gql(gqlQuery, {title, text, images})

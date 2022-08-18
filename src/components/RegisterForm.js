@@ -1,12 +1,12 @@
-import { Box, Card } from '@mui/material';
-import Button from '@mui/material/Button';
-import LinkWrap from '@mui/material/Link';
-import TextField from "@mui/material/TextField";
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Box, Card }            from '@mui/material';
+import Button                   from '@mui/material/Button';
+import LinkWrap                 from '@mui/material/Link';
+import TextField                from "@mui/material/TextField";
+import { useEffect, useState }  from 'react';
+import { Link }                 from 'react-router-dom';
 
 
-export default function LoginPage({onLogin}){
+export default function RegisterPage({onLogin}){
 
     const [login, ChangeLogin] = useState('')
     const [password, ChangePassword] = useState('')

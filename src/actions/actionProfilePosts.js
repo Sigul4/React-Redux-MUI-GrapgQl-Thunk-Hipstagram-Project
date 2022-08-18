@@ -1,5 +1,5 @@
 import gql                  from "../helpers/gql"
-import {actionFulfilled}      from "./actionPromise"
+import {actionFulfilled}    from "./actionPromise"
 import actionAboutMe        from "../actions/actionAboutMe";
 
 const actionProfilePosts = (_id, clear) =>

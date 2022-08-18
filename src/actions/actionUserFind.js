@@ -1,5 +1,5 @@
-import gql from "../helpers/gql"
-import { actionPromise } from "./actionPromise"
+import gql                  from "../helpers/gql"
+import { actionPromise }    from "./actionPromise"
 
 
 const actionUserFind = (text) =>

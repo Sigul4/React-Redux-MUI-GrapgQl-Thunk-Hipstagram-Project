@@ -1,5 +1,4 @@
 import gql              from "../helpers/gql"
-import {actionPromise}    from "./actionPromise"
 import actionProfileInf from "./actionProfileInf"
 
 const actionFollow = (_id) =>

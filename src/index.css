@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Content {
+  background: url(https://phonoteka.org/uploads/posts/2021-05/1620802023_4-phonoteka_org-p-fon-dlya-prezentatsii-mordovskii-ornament-4.png);
+  background-position: left 100px ;
+  background-size: 200px;
+  background-repeat: repeat-y;
+}

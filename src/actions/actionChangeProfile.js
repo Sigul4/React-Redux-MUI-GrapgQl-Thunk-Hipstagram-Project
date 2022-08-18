@@ -1,6 +1,5 @@
-import gql                  from "../helpers/gql"
-import {actionPromise}    from "./actionPromise"
-import actionAboutMe        from "../actions/actionAboutMe";
+import actionAboutMe from "../actions/actionAboutMe";
+import gql           from "../helpers/gql";
 
 console.log('userInfo')
 

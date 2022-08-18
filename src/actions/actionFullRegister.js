@@ -1,7 +1,7 @@
 
-import actionFullLogin  from "./actionFullLogin";
-import {actionPromise}    from "./actionPromise"
-import gql              from "../helpers/gql";
+import gql               from "../helpers/gql";
+import actionFullLogin   from "./actionFullLogin";
+import { actionPromise } from "./actionPromise";
 
 const actionFullRegister = (login, password) =>
 async (dispatch) => {
@@ -15,7 +15,7 @@ async (dispatch) => {
     const action     = actionPromise('register', gqlPromise) 
     const result     = await dispatch(action)
     if (result) await dispatch(actionFullLogin(login, password))
-    else alert("Такого юзера нима!")
+    else alert("Така юзера уже есть!")
 }
 
 export default actionFullRegister

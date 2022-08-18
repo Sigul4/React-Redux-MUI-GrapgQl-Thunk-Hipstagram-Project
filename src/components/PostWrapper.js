@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Post from "./Post";
-import CreatePost from "./ChangePost.js";
-import { Alert, AlertTitle, Button } from "@mui/material";
+import { Alert, AlertTitle, Button }    from "@mui/material";
+import React, { useEffect, useState }   from "react";
+import CreatePost                       from "./ChangePost.js";
+import Post                             from "./Post";
 
 export default function PostWrapper({ post, aboutMe, postLike, postUnlike, changePostsToDelete, recoverPost}) {
     const [changer, switchChange       ] = useState(true);

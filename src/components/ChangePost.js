@@ -1,13 +1,13 @@
-import { Card } from '@mui/material';
-import Button from '@mui/material/Button';
-import CardMedia from '@mui/material/CardMedia';
-import Input from '@mui/material/Input';
-import TextField from '@mui/material/TextField';
-import { useEffect, useState } from 'react';
-import newPost from '../helpers/newPost.js';
-import newPostWithImages from '../helpers/newPostWithImages.js';
-import uploadFile from '../helpers/uploadFile.js';
-import Drop from './DropZone.js';
+import { Card }                 from '@mui/material';
+import Button                   from '@mui/material/Button';
+import Input                    from '@mui/material/Input';
+import TextField                from '@mui/material/TextField';
+import { useEffect, useState }  from 'react';
+import newPost                  from '../helpers/newPost.js';
+import newPostWithImages        from '../helpers/newPostWithImages.js';
+import uploadFile               from '../helpers/uploadFile.js';
+import Drop                     from './DropZone.js';
+import ListOfImages             from './ListOfImaged.js';
 
 
 
@@ -20,7 +20,7 @@ export default function CreatePost ({_id, defaultTitle='', defaultText='', defau
     const [text, ChangeText] = useState(defaultText)
 
     useEffect(()=>{
-        console.log(images)
+        console.log('images',images)
     },[images])
 
     
@@ -28,9 +28,9 @@ export default function CreatePost ({_id, defaultTitle='', defaultText='', defau
 
     return (
             <Card sx={{textAlign: "left", padding: "40px", marginBottom: "20px"}}>
-                <Button onClick={onStopChange}>
+                {_id? <Button onClick={onStopChange}>
                     Back To Default
-                </Button>
+                </Button>:''}
                 <form>
                     <Input 
                         sx={{width: "100%", marginBottom: "10px"}} 
@@ -53,17 +53,7 @@ export default function CreatePost ({_id, defaultTitle='', defaultText='', defau
                         ChangeImages(prevArray => prevArray ? prevArray.concat(image.map((img) => {return {url: `${URL}${img.url}`}})): image.map((img) => {return {url: `${URL}${img.url}`}}))
                         ChangeImagesIds(prevArray => prevArray ? prevArray.concat(image.map((img) => {return {_id: img._id}})): image.map((img) => {return {_id: img._id}}))
                         }} onUpload={uploadFile}/>
-                    <div style={{display: "flex"}}>
-                        {Array.isArray(images) ? images.map((image, index) => 
-                            <CardMedia
-                                // onClick={ChangeImagesIds(images => images.filter())}
-                                component="img"
-                                height="50px"
-                                width ="50px"
-                                image={image.url}
-                                sx={{width: "10%"}}
-                            />) : ''}
-                    </div>
+                    <ListOfImages images={images} ChangeImagesIds={ChangeImagesIds} ChangeImages={ChangeImages} />
                     {/* Select images: {images?.length}{images?.length === 0}{console.log('imagesssss',images?.length === 0)} */}
                     {/* <Button onClick={()=>{}}><h3>Drop to start values</h3></Button> */}
                     <Button onClick={() => {images?.length === 0 ? onChange(newPost(title, text, _id)): onChange(newPostWithImages(title, text, imagesIds, _id));}}><h3>Add post</h3></Button>

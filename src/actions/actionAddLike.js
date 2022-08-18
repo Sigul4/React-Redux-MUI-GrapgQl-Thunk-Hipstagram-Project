@@ -1,5 +1,5 @@
 import gql              from "../helpers/gql"
-import {actionPromise}    from "./actionPromise"
+import {actionPromise}  from "./actionPromise"
 
 const actionAddLike = (id) =>
 async (dispatch, getState) => {

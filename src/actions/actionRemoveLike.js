@@ -1,4 +1,4 @@
-import gql              from "../helpers/gql"
+import gql                from "../helpers/gql"
 import {actionPromise}    from "./actionPromise"
 
 const actionRemoveLike = (id) =>

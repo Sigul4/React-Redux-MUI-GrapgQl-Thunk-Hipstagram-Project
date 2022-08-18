@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Post from "./Post";
-import CreatePost from "./ChangePost.js";
-import { Alert, AlertTitle, Button, Card, TextField } from "@mui/material";
-import { Box, flexbox } from "@mui/system";
-import Comments from "./Comments";
-import actionNewComment from "../actions/actionNewComment";
+import { Button, Card, TextField }      from "@mui/material";
+import { Box }                          from "@mui/system";
+import React, { useEffect, useState }   from "react";
+import actionNewComment                 from "../actions/actionNewComment";
+import CreatePost                       from "./ChangePost.js";
+import Comments                         from "./Comments";
+import Post                             from "./Post";
 
 export default function PostPage({match: {params: {_id}}, post, aboutMe, postLike, postUnlike, changePostsToDelete, recoverPost, onLoad}) {
     const [changer, switchChange       ] = useState(true);

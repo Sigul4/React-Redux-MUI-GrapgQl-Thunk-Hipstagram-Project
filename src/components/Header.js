@@ -1,26 +1,25 @@
-import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
-import AppBar from "@mui/material/AppBar";
-import Badge from "@mui/material/Badge";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { alpha, styled } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
-
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/material";
-import Avatar from '@mui/material/Avatar';
-import CardHeader from '@mui/material/CardHeader';
-import { red } from '@mui/material/colors';
-import { Link } from 'react-router-dom';
-import history from '../data/history';
-import UsersSearch from './UsersSearch';
+import AccountCircle          from "@mui/icons-material/AccountCircle";
+import EmojiFoodBeverageIcon  from '@mui/icons-material/EmojiFoodBeverage';
+import MailIcon               from "@mui/icons-material/Mail";
+import NotificationsIcon      from "@mui/icons-material/Notifications";
+import SearchIcon             from "@mui/icons-material/Search";
+import { Button }             from "@mui/material";
+import AppBar                 from "@mui/material/AppBar";
+import Avatar                 from '@mui/material/Avatar';
+import Badge                  from "@mui/material/Badge";
+import Box                    from "@mui/material/Box";
+import CardHeader             from '@mui/material/CardHeader';
+import { red }                from '@mui/material/colors';
+import IconButton             from "@mui/material/IconButton";
+import Menu                   from "@mui/material/Menu";
+import MenuItem               from "@mui/material/MenuItem";
+import { alpha, styled }      from "@mui/material/styles";
+import Toolbar                from "@mui/material/Toolbar";
+import Typography             from "@mui/material/Typography";
+import * as React             from "react";
+import { Link }               from 'react-router-dom';
+import history                from '../data/history';
+import UsersSearch            from './UsersSearch';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -179,7 +178,7 @@ export default function Header({userNick, userId, requiredNicknames,Logout, onCh
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <UsersSearch requiredNicknames={requiredNicknames} onChooseNick={onChooseNick}/>
+            <UsersSearch  requiredNicknames={requiredNicknames} onChooseNick={onChooseNick}/>
           </Search>
 
           <Box sx={{ flexGrow: 1 }} />

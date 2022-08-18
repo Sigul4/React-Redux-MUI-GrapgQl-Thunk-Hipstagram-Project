@@ -1,6 +1,6 @@
 import gql              from "../helpers/gql"
 import actionAuthLogin  from "./actionAuthLogin"
-import {actionPromise}    from "./actionPromise"
+import {actionPromise}  from "./actionPromise"
 
 const actionFullLogin = (login, password) =>
 async (dispatch) => {

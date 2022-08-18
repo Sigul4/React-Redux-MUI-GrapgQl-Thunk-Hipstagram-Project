@@ -1,4 +1,4 @@
-import gql            from "../helpers/gql"
+import gql              from "../helpers/gql"
 import actionProfileInf from "./actionProfileInf"
 
 const actionUnfollow = (_id) =>

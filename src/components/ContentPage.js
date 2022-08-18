@@ -1,11 +1,11 @@
-import CardMedia from '@mui/material/CardMedia';
-import List from '@mui/material/List';
-import { useEffect, useState } from 'react';
+import CardMedia                from '@mui/material/CardMedia';
+import List                     from '@mui/material/List';
+import { useEffect, useState }  from 'react';
 import '../App.css';
-import deletePost from "../helpers/deletePost";
-import CreatePost from './ChangePost.js';
-import InfoCard from './infoCard.js';
-import PostWrapper from './PostWrapper';
+import deletePost               from "../helpers/deletePost";
+import CreatePost               from './ChangePost.js';
+import InfoCard                 from './infoCard.js';
+import PostWrapper              from './PostWrapper';
 
 function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
     
@@ -32,6 +32,7 @@ function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
     
 
     useEffect(()=>{
+        console.log('takingData',takingData)
         SetTakingData(false)
         if(takingData === false){onPostLoad()}
     },[takingData])
@@ -51,15 +52,15 @@ function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
 
     function onScroll(e) {
         if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 1){
-            console.log('Экшн ПОСЛЕ СКРОЛА ')
+            console.log('Экшн ПОСЛЕ СКРОЛА =>',takingData,"<=")
             SetTakingData(true)
         }
     }
     
     return (
         <List className="ContentPage">
-            <div className="PostList">
-                <CreatePost/>
+            <div className="PostList" style={{paddingTop:100}}>
+                <CreatePost onChange={async (e)=>{Post.unshift(await e); console.log(Post); ChangeView(Post.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} postLike={postLike} postUnlike={postUnlike} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))}}/>
                 {SmthToView.length > 0 ? SmthToView: 
                 <>
                 <h1>There are no posts. <br/>Hold on brother.</h1>
@@ -70,7 +71,10 @@ function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
                 alt="green iguana"
                 /></>}
             </div>
-            <InfoCard className="infoCard" />
+            <div style={{minWidth:300}}>
+            {aboutMe? <InfoCard className="infoCard" user={aboutMe}/>: <InfoCard className="infoCard"/>}
+            </div>
+                
         </List>
     );
 }

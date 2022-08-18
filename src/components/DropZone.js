@@ -1,6 +1,6 @@
-import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
-import React from 'react';
-import Dropzone from 'react-dropzone';
+import AddPhotoAlternateOutlinedIcon    from '@mui/icons-material/AddPhotoAlternateOutlined';
+import React                            from 'react';
+import Dropzone                         from 'react-dropzone';
 
 
 export default function Drop({imageData, onUpload}) {
