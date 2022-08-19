@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/css/main.b41050da.css",
-    "main.js": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/js/main.f0f7be70.js",
+    "main.js": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/js/main.00e862fb.js",
     "static/js/787.a99da218.chunk.js": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/js/787.a99da218.chunk.js",
     "index.html": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/index.html",
     "main.b41050da.css.map": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/css/main.b41050da.css.map",
-    "main.f0f7be70.js.map": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/js/main.f0f7be70.js.map",
+    "main.00e862fb.js.map": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/js/main.00e862fb.js.map",
     "787.a99da218.chunk.js.map": "/React-Redux-MUI-GrapgQl-Thunk-Hipstagram-Project/static/js/787.a99da218.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b41050da.css",
-    "static/js/main.f0f7be70.js"
+    "static/js/main.00e862fb.js"
   ]
 }
