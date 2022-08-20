@@ -26,7 +26,7 @@ function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
     }
     
     useEffect(() => {
-        return () => console.log(postsToDelete,"Posts To Delete",postsToDelete.map(id => deletePost(id)))
+        return () => {console.log(postsToDelete,"Posts To Delete",postsToDelete.map(id => deletePost(id))); onPostLoad(true)}
     }, []);
 
     

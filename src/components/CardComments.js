@@ -20,7 +20,7 @@ export default function CardComments({expanded, commentAdditionality,ChangeText,
                     <Button onClick={ async () => {
                         console.log(postId); 
                         const newComments = await actionNewComment(commentText, postId)
-                        console.log('myComments',myComments, newComments)
+                        // console.log('myComments',myComments, newComments)
                         changeComments(myComments => myComments = [...myComments, newComments])
                         // console.log('myComments',myComments);
                         ChangeText('')

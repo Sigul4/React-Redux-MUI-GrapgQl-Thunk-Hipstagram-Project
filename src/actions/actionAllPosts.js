@@ -3,7 +3,7 @@ import {actionFulfilled}    from "./actionPromise"
 import actionAboutMe        from "../actions/actionAboutMe";
 
 
-const actionAllPosts = () =>
+const actionAllPosts = (clearPosts = false) =>
 async (dispatch, getState) => {
     let howMuchToSkip
     await dispatch(actionAboutMe(getState().auth.payload.sub.id))
@@ -24,7 +24,7 @@ async (dispatch, getState) => {
     }`
     const gqlPromise = await gql(gqlQuery, {"query":  JSON.stringify([{___owner: {$in: arrOfFollows}},{limit:[10],skip:[howMuchToSkip],sort:[{_id:-1}]}])})
 
-    const action = posts ? actionFulfilled('AllPosts', [...posts, ...gqlPromise]) : actionFulfilled('AllPosts', gqlPromise) 
+    const action = !clearPosts ? posts ? actionFulfilled('AllPosts', [...posts, ...gqlPromise]) : actionFulfilled('AllPosts', gqlPromise):actionFulfilled('AllPosts', [])  
     await dispatch(action)
 }
 
