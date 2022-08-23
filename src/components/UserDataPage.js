@@ -2,7 +2,7 @@ import AccessibleForwardIcon    from '@mui/icons-material/AccessibleForward';
 import AccessTimeIcon           from '@mui/icons-material/AccessTime';
 import ModeIcon                 from '@mui/icons-material/Mode';
 import SportsMartialArtsIcon    from '@mui/icons-material/SportsMartialArts';
-import {TextField }      from '@mui/material';
+import {TextField }             from '@mui/material';
 import Avatar                   from '@mui/material/Avatar';
 import Box                      from '@mui/material/Box';
 import Button                   from '@mui/material/Button';
@@ -11,29 +11,41 @@ import CardMedia                from '@mui/material/CardMedia';
 import { red }                  from '@mui/material/colors';
 import Stack                    from '@mui/material/Stack';
 import { useEffect, useState }  from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import '../App.css';
 import deletePost               from "../helpers/deletePost";
 import uploadFile               from '../helpers/uploadFile';
 import CreatePost               from './ChangePost.js';
-import ChangeUserData from './ChangeUserData';
+import ChangeUserData           from './ChangeUserData';
 import PostWrapper              from './PostWrapper';
+import SavedCollections         from './SavedCollections';
+import actionProfileInf         from "../actions/actionProfileInf.js";
+import actionProfilePosts       from '../actions/actionProfilePosts';
+import actionProfileCollections from '../actions/actionProfileCollections';
 
-const UserPage = ({match: {params: {_id}}, props = {}, posts = [], aboutMe, onLoadUserInf, onLoadUserPosts, onProfileChange, postLike, postUnlike, onFollow, onUnfollow }) => {
-    // console.log("!!!!!!!!!aboutMe", aboutMe)
-    let   [SmthToView,    ChangeView         ]   = useState([])
-    const [takingData,    SetTakingData      ]   = useState(false)
-    const [follow,        SetFollow          ]   = useState()
-    const [postsToDelete, changePostsToDelete]   = useState([]);
-    const [avatarSrc,     changeAvatarSrc    ]   = useState('')
-    const [popUpDropMenu, changePopUpDropMenu]   = useState(false)
-    const [profileImage,  ChangeProfileImage ]   = useState([])
-    const [nick,          changeNick         ]   = useState(props?.nick)
-    const [nickChanged,   setNickChanged     ]   = useState(false)
+const UserPage = ({match: {params: {_id}}, onProfileChange, onFollow, onUnfollow, onLoadCollection }) => {
     
+    const aboutMe     = useSelector(state => state?.promise?.aboutMe?.payload)
+    const props       = useSelector(state => state?.promise?.ProfileInf?.payload)
+    const posts       = useSelector(state => state?.promise?.ProfilePosts?.payload)
+    const dispatch = useDispatch()
+
+    let   [SmthToView,             ChangeView]   = useState([])
+    const [takingData,          SetTakingData]   = useState(false)
+    const [follow,                  SetFollow]   = useState()
+    const [postsToDelete, changePostsToDelete]   = useState([]);
+    const [avatarSrc,         changeAvatarSrc]   = useState('')
+    const [popUpDropMenu, changePopUpDropMenu]   = useState(false)
+    const [profileImage,   ChangeProfileImage]   = useState([])
+    const [nick,                   changeNick]   = useState(props?.nick)
+    const [nickChanged,        setNickChanged]   = useState(false)
+
+    const onLoadUserInf   = (_id) => dispatch(actionProfileInf(_id))
+    const onLoadUserPosts = (_id, clear) => dispatch(actionProfilePosts(_id, clear))
+
     const addPostToDelete = (id) =>{
-        // console.log('postData',id)
         changePostsToDelete(postsToDelete.push(id))
-        // console.log('postsToDelete',postsToDelete)
     }    
 
     const recoverPost = (id) =>{
@@ -41,11 +53,13 @@ const UserPage = ({match: {params: {_id}}, props = {}, posts = [], aboutMe, onLo
     }
     
     useEffect(() => {
+        dispatch(actionProfileCollections)
         return () => console.log(postsToDelete,"Posts To Delete",postsToDelete.map(id => deletePost(id)))
     }, []);
 
     useEffect(()=>{
         onLoadUserInf(_id)
+        onLoadCollection(_id)
         onLoadUserPosts(_id, true)
     },[_id])
     
@@ -66,12 +80,13 @@ const UserPage = ({match: {params: {_id}}, props = {}, posts = [], aboutMe, onLo
     },[props])
     
     useEffect(()=>{
-        if(!!aboutMe)ChangeView(posts.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} postLike={postLike} postUnlike={postUnlike} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))
+        if(!!aboutMe)ChangeView(posts?.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))
     },[posts])
     
     useEffect(()=>{
         if(props?.avatar?.url)changeAvatarSrc(`http://hipstagram.node.ed.asmer.org.ua/${props?.avatar?.url}`)
     },[props])
+    
 
     function onScroll(e) {
         if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 1){
@@ -82,9 +97,9 @@ const UserPage = ({match: {params: {_id}}, props = {}, posts = [], aboutMe, onLo
         return (
             
             <Box sx={{width: "100%",display: "flex", justifyContent: "center" }}>
-                <ChangeUserData popUpDropMenu={popUpDropMenu} ChangeProfileImage={ChangeProfileImage} uploadFile={uploadFile} changePopUpDropMenu={changePopUpDropMenu} profileImage={profileImage} onProfileChange={onProfileChange} onLoadUserInf={onLoadUserInf} _id={_id}/>
+                <ChangeUserData popUpDropMenu={popUpDropMenu} ChangeProfileImage={ChangeProfileImage} uploadFile={uploadFile} changePopUpDropMenu={changePopUpDropMenu} profileImage={profileImage} onProfileChange={onProfileChange} _id={_id}/>
                 
-                <Box sx={{maxWidth: 1200}}>
+                <Box sx={{display: "block", justifyContent: "center"}}>
                     <CardMedia
                         component="img"
                         height="300"
@@ -94,7 +109,7 @@ const UserPage = ({match: {params: {_id}}, props = {}, posts = [], aboutMe, onLo
                     />
                         
                     <Stack
-                    sx={{padding: 1}}
+                    sx={{padding: 1, display:"flex", flexDirection:"row"}}
                     direction="row"
                     justifyContent="space-between"
                     alignItems="flex-start"
@@ -128,13 +143,15 @@ const UserPage = ({match: {params: {_id}}, props = {}, posts = [], aboutMe, onLo
                         spacing={2}
                         >
                             { <Box><SportsMartialArtsIcon/>followers: {props?.followers?.length}</Box>}
-                            {<Box><AccessibleForwardIcon/>following: {props?.following?.length || 0}</Box> }
+                            { <Box><AccessibleForwardIcon/>following: {props?.following?.length || 0}</Box> }
                             { <Box sx={{display: "flex",alignItems:"center", flexDirection:"column"}}><AccessTimeIcon/>With us since: {new Date(props?.createdAt*1).toDateString()}</Box>}
                         </Stack>
                     </Stack>   
                             
+                    <SavedCollections/>
+
                     <div className="PostList">
-                        {!!aboutMe && _id === aboutMe._id ?<CreatePost onChange={async (e)=>{posts.unshift(await e); console.log(posts); ChangeView(posts.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} postLike={postLike} postUnlike={postUnlike} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))}}/>:''}
+                        {!!aboutMe && posts && _id === aboutMe._id ?<CreatePost onChange={async (e)=>{posts.unshift(await e);; ChangeView(posts?.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))}}/>:''}
                         {SmthToView}
                     </div>
                     

@@ -21,6 +21,7 @@ async (dispatch, getState) => {
     const gqlPromise = await gql(gqlQuery, {id: userInfo._id, avatar: avatar, nick: nick })
     await gqlPromise
 
+    console.log('dispatch',dispatch)
     await dispatch(actionAboutMe)
 }
 

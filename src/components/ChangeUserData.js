@@ -1,7 +1,13 @@
 import { Button, Card, CardMedia } from "@mui/material";
+import { useDispatch } from "react-redux";
 import Drop from "./DropZone";
+import actionProfileInf from "../actions/actionProfileInf";
 
 export default function ChangeUserData({popUpDropMenu,ChangeProfileImage,uploadFile,changePopUpDropMenu,profileImage,onProfileChange,onLoadUserInf,_id}){
+
+    const dispatch = useDispatch()
+    
+
     return (
         <>
         {popUpDropMenu? <>
@@ -17,7 +23,7 @@ export default function ChangeUserData({popUpDropMenu,ChangeProfileImage,uploadF
                             sx={{margin:"10px", width:"55%"}}
                         />
                 </div>
-                <Button variant="contained" onClick={async() =>  {await onProfileChange(profileImage._id, null); onLoadUserInf(_id); changePopUpDropMenu(!popUpDropMenu)}}>Change Profile Page</Button>
+                <Button variant="contained" onClick={async() =>  {await onProfileChange(profileImage._id, null); dispatch(actionProfileInf(_id)); changePopUpDropMenu(!popUpDropMenu)}}>Change Profile Page</Button>
             </Card>
         </>: ''}
         </>

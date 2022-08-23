@@ -1,18 +1,22 @@
 import CardMedia                from '@mui/material/CardMedia';
 import List                     from '@mui/material/List';
 import { useEffect, useState }  from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import actionProfileCollections from '../actions/actionProfileCollections';
 import '../App.css';
 import deletePost               from "../helpers/deletePost";
 import CreatePost               from './ChangePost.js';
 import InfoCard                 from './infoCard.js';
 import PostWrapper              from './PostWrapper';
 
-function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
+function ContentPage({Post, aboutMe, onPostLoad}) {
     
     const [SmthToView, ChangeView] = useState('')
     const [takingData, SetTakingData] = useState('')
     const [postsToDelete, changePostsToDelete] = useState([]);
-    
+    const dispatch = useDispatch()
+    const myId = useSelector(state => state.auth.payload.sub.id)
     
         
     const addPostToDelete = (id) =>{
@@ -26,6 +30,7 @@ function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
     }
     
     useEffect(() => {
+        dispatch(actionProfileCollections(myId))
         return () => {console.log(postsToDelete,"Posts To Delete",postsToDelete.map(id => deletePost(id))); onPostLoad(true)}
     }, []);
 
@@ -46,7 +51,7 @@ function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
     
     useEffect(()=>{
         console.log('REAL POSTS', Post)
-        if (Post && !!aboutMe) ChangeView(Post.map(post => {return <PostWrapper key={post._id} post={post} aboutMe={aboutMe} postLike={postLike} postUnlike={postUnlike} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/>}))
+        if (Post && !!aboutMe) ChangeView(Post.map(post => {return <PostWrapper key={post._id} post={post} aboutMe={aboutMe} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/>}))
     },[Post])
 
 
@@ -60,7 +65,7 @@ function ContentPage({Post, aboutMe, onPostLoad, postLike, postUnlike}) {
     return (
         <List className="ContentPage">
             <div className="PostList" style={{paddingTop:100}}>
-                <CreatePost onChange={async (e)=>{Post.unshift(await e); console.log(Post); ChangeView(Post.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} postLike={postLike} postUnlike={postUnlike} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))}}/>
+                <CreatePost onChange={async (e)=>{Post.unshift(await e); console.log(Post); ChangeView(Post.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))}}/>
                 {SmthToView.length > 0 ? SmthToView: 
                 <>
                 <h1>There are no posts. <br/>Hold on brother.</h1>

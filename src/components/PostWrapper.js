@@ -1,12 +1,20 @@
-import { Alert, AlertTitle, Button }    from "@mui/material";
-import React, { useEffect, useState }   from "react";
-import CreatePost                       from "./ChangePost.js";
-import Post                             from "./Post";
+import { Alert, AlertTitle, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import CreatePost from "./ChangePost.js";
+import Post from "./Post";
+import actionAddLike from "../actions/actionAddLike.js";
+import actionRemoveLike from "../actions/actionRemoveLike.js";
 
-export default function PostWrapper({ post, aboutMe, postLike, postUnlike, changePostsToDelete, recoverPost}) {
-    const [changer, switchChange       ] = useState(true);
-    const [postData, changeData        ] = useState(post);
+
+export default function PostWrapper({ post, aboutMe, changePostsToDelete, recoverPost}) {
+    const dispatch = useDispatch()
+    const [changer,        switchChange] = useState(true);
+    const [postData,         changeData] = useState(post);
     const [deletedPost, changeDeletness] = useState(false)
+    
+    const postLike   = () => dispatch(actionAddLike(post._id))
+    const postUnlike = (id) => dispatch(actionRemoveLike(id))
 
     useEffect(() => {
         console.log("changer", changer);

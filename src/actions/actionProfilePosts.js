@@ -10,10 +10,11 @@ async (dispatch,getState) => {
     
     if(clear){
         posts = false
+        console.log('posts',posts)
     }
-    if (posts) console.log('posts[0]',posts[0]?.owner?.login === getState().promise.ProfileInf.payload.login)
+    // if (posts) console.log('posts[0]',posts[0]?.owner?.login === getState().promise.ProfileInf.payload.login)
     // const userLogin =  
-    // if(getState().promise.ProfileInf.payload.login === posts[0].owner.login) console.log('getState().promise.ProfileInf.payload.login,posts[0].owner.login',getState().promise.ProfileInf.payload.login,posts[0].owner.login )
+    // if(getState().promise.ProfileInf.payload.login === posts[0].owner.login) console.log('getState()')
     
     posts ? howMuchToSkip = posts.length: howMuchToSkip = 0 
     

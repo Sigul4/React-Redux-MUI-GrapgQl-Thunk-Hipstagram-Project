@@ -9,17 +9,16 @@ import Typography                 from '@mui/material/Typography';
 import { useState }               from 'react';
 import { Link }                   from 'react-router-dom';
 import actionNewComment           from "../actions/actionNewComment";
-import CardFooter from './CardFooter';
-import CardInfСontainer from './CardInfСontainer';
+import CardFooter                 from './CardFooter';
+import CardInfСontainer           from './CardInfСontainer';
 import Comments                   from './Comments.js';
-import CardComments from './CardComments';
+import CardComments               from './CardComments';
 
 
 
 export default function Post({userId, postId, title, text, createdAt,comments, owner, images, likes, postLike, postUnlike, onChangePost, onDeletePost, commentAdditionality = true}) {
   const [myComments, changeComments] = useState(comments?comments:[]);
   const [expanded,      setExpanded] = useState(false);
-  const [commentText,    ChangeText] = useState('');
   const [likesLength,changelikesLength] = useState(likes?.length);
 
   
@@ -67,7 +66,8 @@ export default function Post({userId, postId, title, text, createdAt,comments, o
 
       <CardFooter statusOfLike={statusOfLike} postUnlike={postUnlike} postLike={postLike} likesInf={likesInf} setStatus={setStatus} changelikesLength={changelikesLength} likesLength={likesLength} commentAdditionality={commentAdditionality} postId={postId} expanded={expanded} handleExpandClick={handleExpandClick}/>
 
-      <CardComments expanded={expanded} commentAdditionality={commentAdditionality} ChangeText={ChangeText} commentText={commentText} postId={postId} actionNewComment={actionNewComment} myComments={myComments} changeComments={changeComments}/>
+      <CardComments expanded={expanded} commentAdditionality={commentAdditionality} postId={postId} actionNewComment={actionNewComment} myComments={myComments} changeComments={changeComments}/>
+
 
     </Card>
   );

@@ -7,7 +7,6 @@ async dispatch => {
     dispatch(actionPending(name))
     try{
         let payload = await promise
-        // console.log('==========>',payload)
         dispatch(actionFulfilled(name, payload))
         return payload
     }

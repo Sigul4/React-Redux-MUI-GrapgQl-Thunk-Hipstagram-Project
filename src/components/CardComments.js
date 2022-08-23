@@ -1,7 +1,10 @@
 import { Box, Button, CardContent, Collapse, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 import Comments from "./Comments";
 
-export default function CardComments({expanded, commentAdditionality,ChangeText,commentText,postId,actionNewComment,myComments,changeComments}){
+export default function CardComments({expanded, commentAdditionality,postId,actionNewComment,myComments,changeComments}){
+    
+    const [commentText,    ChangeText] = useState('');
     return<Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
             <Typography component={'span'} variant={'body2'} textAlign="left" paragraph>
