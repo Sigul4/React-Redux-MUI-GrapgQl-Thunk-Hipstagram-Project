@@ -11,7 +11,7 @@ async (dispatch) => {
     }`
         const gqlPromise = gql(gqlQuery, {"id":id, "query": text})
         const action = actionPromise('NewCollection', gqlPromise)
-        console.log('dispatch',dispatch)
+        // console.log('dispatch',dispatch)
         await dispatch(action)
     }   
 

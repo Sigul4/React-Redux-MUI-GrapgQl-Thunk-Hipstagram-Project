@@ -17,11 +17,11 @@ export default function PostWrapper({ post, aboutMe, changePostsToDelete, recove
     const postUnlike = (id) => dispatch(actionRemoveLike(id))
 
     useEffect(() => {
-        console.log("changer", changer);
+        // console.log("changer", changer);
     }, [changer]);
 
     const deletePost = () =>{
-        console.log('postData',postData)
+        // console.log('postData',postData)
         changeDeletness(!deletedPost)
         changePostsToDelete(postData._id)
     }
@@ -34,7 +34,7 @@ export default function PostWrapper({ post, aboutMe, changePostsToDelete, recove
     const showData = async (data) => {
         switchChange(!changer);
         changeData(await data);
-        console.log('data',data)
+        // console.log('data',data)
     };
     return (
         <>

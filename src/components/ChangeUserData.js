@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import Drop from "./DropZone";
 import actionProfileInf from "../actions/actionProfileInf";
 
-export default function ChangeUserData({popUpDropMenu,ChangeProfileImage,uploadFile,changePopUpDropMenu,profileImage,onProfileChange,onLoadUserInf,_id}){
+export default function ChangeUserData({popUpDropMenu,ChangeProfileImage,uploadFile,changePopUpDropMenu,profileImage,onProfileChange,_id}){
 
     const dispatch = useDispatch()
     
@@ -11,7 +11,7 @@ export default function ChangeUserData({popUpDropMenu,ChangeProfileImage,uploadF
     return (
         <>
         {popUpDropMenu? <>
-            <Card sx={{position:"fixed",top: 200,margin:"auto",height:400, zIndex:4, overflow:"hidden", background:"rgb(231,231,231)"}}>
+            <Card sx={{position:"fixed",top: 200,margin:"auto",height:500,maxWidth:"400px", zIndex:4, overflow:"hidden", background:"rgb(231,231,231)"}}>
                 <Drop style={{height:"100%"}}
                 imageData={(image) => {
                     ChangeProfileImage(image[0])}} onUpload={uploadFile}/>
@@ -20,7 +20,7 @@ export default function ChangeUserData({popUpDropMenu,ChangeProfileImage,uploadF
                         <CardMedia
                             image={profileImage?.url ? `http://hipstagram.node.ed.asmer.org.ua/${profileImage?.url}`: ""}
                             component="img"
-                            sx={{margin:"10px", width:"55%"}}
+                            sx={{margin:"10px",maxWidth:"55%",maxHeight:"300px"}}
                         />
                 </div>
                 <Button variant="contained" onClick={async() =>  {await onProfileChange(profileImage._id, null); dispatch(actionProfileInf(_id)); changePopUpDropMenu(!popUpDropMenu)}}>Change Profile Page</Button>

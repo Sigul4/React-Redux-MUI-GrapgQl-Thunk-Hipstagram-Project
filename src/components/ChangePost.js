@@ -20,11 +20,11 @@ export default function CreatePost ({_id, defaultTitle='', defaultText='', defau
     const [text, ChangeText] = useState(defaultText)
 
     useEffect(()=>{
-        console.log('images',images)
+        // console.log('images',images)
     },[images])
 
     
-    console.log("imagesIds",imagesIds)
+    // console.log("imagesIds",imagesIds)
 
     return (
             <Card sx={{textAlign: "left", padding: "40px", marginBottom: "20px"}}>
@@ -49,7 +49,7 @@ export default function CreatePost ({_id, defaultTitle='', defaultText='', defau
                         value={text}
                         />
                     <Drop imageData={(image) => {
-                        console.log('!!!!!',image)
+                        // console.log('!!!!!',image)
                         ChangeImages(prevArray => prevArray ? prevArray.concat(image.map((img) => {return {url: `${URL}${img.url}`}})): image.map((img) => {return {url: `${URL}${img.url}`}}))
                         ChangeImagesIds(prevArray => prevArray ? prevArray.concat(image.map((img) => {return {_id: img._id}})): image.map((img) => {return {_id: img._id}}))
                         }} onUpload={uploadFile}/>

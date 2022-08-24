@@ -29,7 +29,7 @@ export default function UsersSearch({requiredNicknames, onChooseNick}){
     },[nick])    
 
     useEffect(()=>{
-        console.log(nick, requiredNicknames)
+        // console.log(nick, requiredNicknames)
     },[requiredNicknames])
 
 

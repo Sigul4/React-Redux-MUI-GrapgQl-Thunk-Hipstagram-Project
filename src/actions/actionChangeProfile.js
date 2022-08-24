@@ -1,11 +1,11 @@
 import actionAboutMe from "../actions/actionAboutMe";
 import gql           from "../helpers/gql";
 
-console.log('userInfo')
+// console.log('userInfo')
 
 const actionChangeProfile = (avatar, nick) =>
 async (dispatch, getState) => {
-    console.log('userInfo',getState())
+    // console.log('userInfo',getState())
     let userInfo = getState().promise.aboutMe.payload
 
     if(!avatar) avatar = userInfo.avatar?._id
@@ -21,7 +21,7 @@ async (dispatch, getState) => {
     const gqlPromise = await gql(gqlQuery, {id: userInfo._id, avatar: avatar, nick: nick })
     await gqlPromise
 
-    console.log('dispatch',dispatch)
+    // console.log('dispatch',dispatch)
     await dispatch(actionAboutMe)
 }
 

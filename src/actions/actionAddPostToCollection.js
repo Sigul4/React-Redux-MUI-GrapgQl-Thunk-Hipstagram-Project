@@ -4,11 +4,11 @@ import {actionPromise}    from "./actionPromise"
 const actionAddPostToCollection = (id, post) =>
 async (dispatch, getState) => {
     const profileCollections = getState().promise?.ProfileCollections?.payload
-    console.log('profileCollections',profileCollections)
+    // console.log('profileCollections',profileCollections)
 
 
     const collection = id !== null ? id: profileCollections[0]
-    console.log('profileCollections[0]',collection._id)
+    // console.log('profileCollections[0]',collection._id)
     const preGqlQuery = 
     `query PreCollectionByUser($collectionQuery:String){
         CollectionFindOne(query:$collectionQuery){ 
@@ -29,7 +29,7 @@ async (dispatch, getState) => {
             :postsByCollection.posts
         : [{_id: post}]
     
-    console.log('resultPosts',resultPosts)
+    // console.log('resultPosts',resultPosts)
     const gqlQuery = 
     `mutation CollectionUpsert($id:ID, $text:String, $posts:[PostInput]){
         CollectionUpsert(collection:{_id:$id,text:$text,posts:$posts}){ 
@@ -38,7 +38,7 @@ async (dispatch, getState) => {
     }`
         const gqlPromise = gql(gqlQuery, {"id":collection._id,"text":collection.text, "posts": resultPosts})
         const action = actionPromise('NewCollection', gqlPromise)
-        console.log('dispatch',dispatch)
+        // console.log('dispatch',dispatch)
         await dispatch(action)
     }   
 

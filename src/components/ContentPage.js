@@ -20,9 +20,9 @@ function ContentPage({Post, aboutMe, onPostLoad}) {
     
         
     const addPostToDelete = (id) =>{
-        console.log('postData',id)
+        // console.log('postData',id)
         changePostsToDelete(postsToDelete.push(id))
-        console.log('postsToDelete',postsToDelete)
+        // console.log('postsToDelete',postsToDelete)
     }    
 
     const recoverPost = (id) =>{
@@ -37,7 +37,7 @@ function ContentPage({Post, aboutMe, onPostLoad}) {
     
 
     useEffect(()=>{
-        console.log('takingData',takingData)
+        // console.log('takingData',takingData)
         SetTakingData(false)
         if(takingData === false){onPostLoad()}
     },[takingData])
@@ -57,7 +57,7 @@ function ContentPage({Post, aboutMe, onPostLoad}) {
 
     function onScroll(e) {
         if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 1){
-            console.log('Экшн ПОСЛЕ СКРОЛА =>',takingData,"<=")
+            // console.log('Экшн ПОСЛЕ СКРОЛА =>',takingData,"<=")
             SetTakingData(true)
         }
     }
@@ -65,7 +65,7 @@ function ContentPage({Post, aboutMe, onPostLoad}) {
     return (
         <List className="ContentPage">
             <div className="PostList" style={{paddingTop:100}}>
-                <CreatePost onChange={async (e)=>{Post.unshift(await e); console.log(Post); ChangeView(Post.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))}}/>
+                <CreatePost onChange={async (e)=>{Post.unshift(await e); ChangeView(Post.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))}}/>
                 {SmthToView.length > 0 ? SmthToView: 
                 <>
                 <h1>There are no posts. <br/>Hold on brother.</h1>

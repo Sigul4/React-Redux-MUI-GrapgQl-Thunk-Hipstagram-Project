@@ -21,7 +21,7 @@ export default function SavedCollections(){
     
     useEffect(()=>{
         setCollections(collections)
-        console.log("collectionzzzz",userCollections)
+        // console.log("collectionzzzz",userCollections)
     },[collections])
     
     useEffect(()=>{

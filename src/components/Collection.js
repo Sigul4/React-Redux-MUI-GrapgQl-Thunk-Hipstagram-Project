@@ -32,6 +32,7 @@ const Collection = ({
     
 
     const aboutMe = useSelector(state => state?.promise?.aboutMe?.payload)
+    const collection = useSelector(state => state?.promise?.PostsByCollection?.payload)
     const dispatch = useDispatch()
     
 
@@ -68,13 +69,12 @@ const Collection = ({
     }, [SmthToView]);
 
     useEffect(() => {
-        if (!!aboutMe)
         ChangeView(
             posts?.posts?.map((post) => {
-            console.log('post',post)
+            // console.log('post',post)
             return(
             <Box sx={{display:"flex", flexDirection:"column", marginBottom:"20px"}}>
-                <Button onClick={async () => {await dispatch(actionDeletePostFromCollection(_id,post._id));onLoadUserPosts(_id, true)}}>Remove “👇“ from this collection</Button>
+            {collection.owner._id === aboutMe._id ? <Button onClick={async () => {await dispatch(actionDeletePostFromCollection(_id,post._id));onLoadUserPosts(_id, true)}}>Remove “👇“ from this collection</Button>:''}
                 <PostWrapper
                     key={post._id}
                     post={post}

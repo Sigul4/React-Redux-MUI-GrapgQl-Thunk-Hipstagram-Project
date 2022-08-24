@@ -3,7 +3,7 @@ import { CardMedia } from "@mui/material";
 export default function ListOfImages({images, ChangeImagesIds, ChangeImages}){
                 return (<div style={{display: "flex"}}>
                         {Array.isArray(images) ? images.map((image, index) => {
-                            console.log('image?.url',image?.url, image?.url.length)
+                            // console.log('image?.url',image?.url, image?.url.length)
                             const url = image?.url.length > 39 ? image?.url.slice(32): image?.url
                             return <CardMedia   
                                 onClick={() =>{

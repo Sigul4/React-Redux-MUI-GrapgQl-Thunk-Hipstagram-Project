@@ -4,7 +4,7 @@ import { actionPromise }    from "./actionPromise"
 
 const actionUserFind = (text) =>
 async (dispatch) => {
-    console.log('Работаем, проверяй...')
+    // console.log('Работаем, проверяй...')
 
     const gqlQuery = 
     `query usery($users: String){

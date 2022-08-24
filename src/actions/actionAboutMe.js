@@ -4,6 +4,7 @@ import history          from "../data/history"
 
 const actionAboutMe = (_id) =>
 async (dispatch, getState) => {
+    
     const gqlQuery = 
     `query users($id: String){
     UserFindOne(query:$id) {
@@ -11,9 +12,9 @@ async (dispatch, getState) => {
     }
 }`
     const gqlPromise = gql(gqlQuery, {"id": JSON.stringify([{_id}])})
+    if(JSON.stringify(getState().promise.aboutMe?.payload) !== JSON.stringify(await gqlPromise)){
     const action =  actionPromise('aboutMe', gqlPromise)
-    await dispatch(action)
-    // console.log("action",JSON.stringify(getState().promise.aboutMe?.payload))
+    await dispatch(action)}
     
     if(history?.location?.pathname === '/login' ){
         // history.push("/content")

@@ -5,7 +5,7 @@ import { Link }             from 'react-router-dom';
 
 
 export default function Comments({comments, postId, updateComments}){
-    console.log('comments',comments)
+    // console.log('comments',comments)
     
     return (
             <>

@@ -3,7 +3,7 @@ import actionProfileInf from "./actionProfileInf"
 
 const actionUnfollow = (_id) =>
 async (dispatch, getState) => {
-    console.log()
+    // console.log()
     const gqlQueryAllMyFollows = 
         `query userF($query:String){
             UserFindOne(query:$query){ 
@@ -15,9 +15,9 @@ async (dispatch, getState) => {
         
     const preventFollows = await gqlFollowsPromise
     
-    console.log('!!!!!!!!!!!!!!!!!',JSON.stringify(preventFollows.following, preventFollows.following.length))
+    // console.log('!!!!!!!!!!!!!!!!!',JSON.stringify(preventFollows.following, preventFollows.following.length))
     preventFollows.following = preventFollows.following.filter(user => user._id !== _id)
-    console.log('======>',preventFollows.following, preventFollows.following.length)
+    // console.log('======>',preventFollows.following, preventFollows.following.length)
         
     const gqlQuery = 
         `mutation setFollows($myId: String, $Id: [UserInput]){

@@ -15,10 +15,10 @@ async (dispatch, getState) => {
         
     const preventFollows = await gqlFollowsPromise
     
-    console.log('!!!!!!!!!!!!!!!!!',JSON.stringify(preventFollows), {_id: _id})
+    // console.log('!!!!!!!!!!!!!!!!!',JSON.stringify(preventFollows), {_id: _id})
     if (preventFollows.following === null) preventFollows.following = []
     preventFollows.following.push({_id: _id})
-    console.log(preventFollows.following)
+    // console.log(preventFollows.following)
         
     const gqlQuery = 
         `mutation setFollows($myId: String, $Id: [UserInput]){

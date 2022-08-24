@@ -9,7 +9,7 @@ async (dispatch, getState) => {
     await dispatch(actionAboutMe(getState().auth.payload.sub.id))
 
     const posts = getState().promise?.AllPosts?.payload
-    const arrOfFollows = getState().promise?.aboutMe?.payload?.following.map(follow => follow._id)
+    const arrOfFollows = getState().promise?.aboutMe?.payload?.following?.map(follow => follow._id)
     
     posts ? howMuchToSkip = posts.length: howMuchToSkip = 0 
 

@@ -58,7 +58,7 @@ export default function CardFooter({statusOfLike,postUnlike,postLike,likesInf,se
                 {listOfCollections 
                 ?listOfCollections.map((Collection) => 
                   { 
-                  console.log('Collection',Collection)
+                  // console.log('Collection',Collection)
                   return (<IconButton onClick={async () => {
                     setCollection(Collection)
                     setBookmark(!Bookmark); 

@@ -1,7 +1,7 @@
 import gql from './gql.js';
 
 const deletePost = async (_id) => {
-    console.log(_id)
+    // console.log(_id)
     const gqlQuery = 
     `mutation deletePost($idToDelete:ID ){
         PostDelete(post: { _id: $idToDelete}){

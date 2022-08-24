@@ -40,6 +40,7 @@ const UserPage = ({match: {params: {_id}}, onProfileChange, onFollow, onUnfollow
     const [profileImage,   ChangeProfileImage]   = useState([])
     const [nick,                   changeNick]   = useState(props?.nick)
     const [nickChanged,        setNickChanged]   = useState(false)
+    const [checkedProps,      setCheckedProps]   = useState(false)
 
     const onLoadUserInf   = (_id) => dispatch(actionProfileInf(_id))
     const onLoadUserPosts = (_id, clear) => dispatch(actionProfilePosts(_id, clear))
@@ -76,10 +77,14 @@ const UserPage = ({match: {params: {_id}}, onProfileChange, onFollow, onUnfollow
     },[])
 
     useEffect(()=>{
-        if(!!aboutMe)SetFollow(props?.followers?.map((follower) => follower._id === aboutMe._id).includes(true))
+        if(!!aboutMe && props !== checkedProps){
+            setCheckedProps(props)
+            SetFollow(props?.followers?.map((follower) => follower._id === aboutMe._id).includes(true))
+        }
     },[props])
     
     useEffect(()=>{
+        // console.log('posts',posts)
         if(!!aboutMe)ChangeView(posts?.map(post => <PostWrapper key={post._id} post={post} aboutMe={aboutMe} changePostsToDelete={addPostToDelete} recoverPost={recoverPost} className="post"/> ))
     },[posts])
     
@@ -129,7 +134,7 @@ const UserPage = ({match: {params: {_id}}, onProfileChange, onFollow, onUnfollow
                                 {!!aboutMe && _id !== aboutMe._id 
                                     ?<h2>{props?.nick ? props?.nick :props?.login}</h2>
                                     :!nickChanged
-                                        ?<Box style={{display:"flex", flexDirection:"row"}}><h2>{props?.nick}</h2>{!!aboutMe && _id === aboutMe._id ? <Button onClick={() => setNickChanged(!nickChanged)}><ModeIcon sx={{fontSize: 20, opacity: "1","&:hover": {opacity: "1"}}}/></Button>: ''}</Box>
+                                        ?<Box style={{display:"flex", flexDirection:"row"}}><h2>{props?.nick ? props?.nick : "Set Nick"}</h2>{!!aboutMe && _id === aboutMe._id ? <Button onClick={() => setNickChanged(!nickChanged)}><ModeIcon sx={{fontSize: 20, opacity: "1","&:hover": {opacity: "1"}}}/></Button>: ''}</Box>
                                         :<Box style={{display:"flex", flexDirection:"row", width: 400}}><TextField required id="standard-required" defaultValue={props?.nick} variant="standard" onChange={(e) => {changeNick(nick => nick = e.target.value)}}/><Button onClick={async() =>  {await onProfileChange(null, nick); onLoadUserInf(_id);setNickChanged(!nickChanged)}}>✔</Button><Button onClick={() =>  {setNickChanged(!nickChanged)}}>Х</Button></Box>}
                             </Box>
                         </Box>

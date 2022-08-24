@@ -49,7 +49,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 
 
 export default function Header({userNick, userId,userData, requiredNicknames,Logout, onChooseNick}) {
-  console.log('userData',userNick, userId)
+  // console.log('userData',userData,userNick, userId)
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -155,7 +155,7 @@ export default function Header({userNick, userId,userData, requiredNicknames,Log
   
   // const link = history.location.pathname === `/profile/${userId}`? '' : `profile/${userId}` 
   const link = `profile/${userId}` 
-  console.log(history.location.pathname === `/profile/${userId}`, link)
+  // console.log(history.location.pathname === `/profile/${userId}`, link)
   return (
     <Box style={{zIndex: 3}} sx={{ flexGrow: 1, position: "fixed", width:"100%"}}>
       <AppBar position="static">
@@ -197,7 +197,7 @@ export default function Header({userNick, userId,userData, requiredNicknames,Log
                 userNick
                 ? <CardHeader
                 avatar={
-                <Avatar sx={{ bgcolor: red[500],width: 50, height: 50, }} alt='' aria-label="recipe" src={`http://hipstagram.node.ed.asmer.org.ua/${userData? userData.avatar.url:''}`}/>
+                <Avatar sx={{ bgcolor: red[500],width: 50, height: 50, }} alt='' aria-label="recipe" src={!!userData ? `http://hipstagram.node.ed.asmer.org.ua/${userData?.avatar?.url}`:''}/>
                 }/> 
                 : <AccountCircle style={{width: "50px", height: "50px"}}/>} 
             </Link>

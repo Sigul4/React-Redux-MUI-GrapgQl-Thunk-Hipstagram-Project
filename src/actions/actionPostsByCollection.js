@@ -6,7 +6,7 @@ async (dispatch) => {
     const gqlQuery = 
     `query CollectionByUser($collectionId:String){
         CollectionFindOne(query:$collectionId){ 
-            _id text posts{_id title text images{_id url} createdAt likesCount 
+            _id text owner{_id nick login avatar{_id url}} posts{_id title text images{_id url} createdAt likesCount 
             comments{_id createdAt text likesCount owner{_id nick login avatar{_id url}} answerTo{_id}} directs{text} likesCount 
             collections{_id}
             owner{_id login nick avatar{_id url}} 

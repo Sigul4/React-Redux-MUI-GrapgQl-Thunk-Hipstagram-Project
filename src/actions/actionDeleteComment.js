@@ -10,7 +10,7 @@ const actionDeleteComment = async (text, id) => {
     }`
     const gqlPromise = gql(gqlQuery, {id:id })
     const action = await gqlPromise
-    console.log(await action)
+    // console.log(await action)
     return await action
 }
 

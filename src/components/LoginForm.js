@@ -12,7 +12,7 @@ export default function LoginPage({onLogin}){
     const [password, ChangePassword] = useState('')
 
     useEffect(()=>{
-        console.log(login,password)
+        // console.log(login,password)
     },[login,password])
 
     return (

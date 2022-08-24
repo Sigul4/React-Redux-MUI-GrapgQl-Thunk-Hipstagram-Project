@@ -17,24 +17,23 @@ export default function PostPage({match: {params: {_id}}, post, aboutMe, postLik
 
     useEffect(()=>{
         onLoad(_id)
-        console.log("работает!",post,postData)
     },[_id])
 
     useEffect(()=>{
         changeData(post)
         changeComments(post?.comments)
-        console.log('postData',postData)
+        // console.log('postData',postData)
     },[post])
 
     useEffect(()=>{
-        console.log('postData',postData,postData?.comments)
+        // console.log('postData',postData,postData?.comments)
     },[postData])
 
 
     const showData = async (data) => {
         switchChange(!changer);
         changeData(await data);
-        console.log('data',data)
+        // console.log('data',data)
     };
     return (
         <Box sx={{width:"100%", display:"flex", justifyContent: "center", paddingTop:"100px"}}>
