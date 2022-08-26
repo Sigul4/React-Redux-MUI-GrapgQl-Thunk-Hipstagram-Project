@@ -3,10 +3,12 @@ import Button                   from '@mui/material/Button';
 import LinkWrap                 from '@mui/material/Link';
 import TextField                from "@mui/material/TextField";
 import { useEffect, useState }  from 'react';
+import { connect } from 'react-redux';
 import { Link }                 from 'react-router-dom';
+import actionFullRegister from '../actions/actionFullRegister';
 
 
-export default function RegisterPage({onLogin}){
+function RegisterPage({onLogin}){
 
     const [login, ChangeLogin] = useState('')
     const [password, ChangePassword] = useState('')
@@ -89,4 +91,4 @@ export default function RegisterPage({onLogin}){
     )
 }
 
-    
+export const CRegisterCategory = connect(null,  {onLogin: actionFullRegister})    (RegisterPage)

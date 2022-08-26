@@ -1,12 +1,15 @@
 import { Button, CardMedia } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "../App.css";
 import deletePost from "../helpers/deletePost";
 import PostWrapper from "./PostWrapper";
 import actionDeletePostFromCollection from "../actions/actionDeletePostFromCollection"; 
+import actionRemoveLike from "../actions/actionRemoveLike";
+import actionAddLike from "../actions/actionAddLike";
+import actionPostsByCollection from "../actions/actionPostsByCollection";
 
 const Collection = ({
     match: {
@@ -120,4 +123,5 @@ const Collection = ({
         </>
     );
     }
-    export default Collection;
+
+export const CCollectionsPage  = connect(state => ({posts: state?.promise?.PostsByCollection?.payload, aboutMe: state?.promise?.aboutMe?.payload, collections: state?.promise?.ProfileCollections?.payload}), {onLoadUserPosts:actionPostsByCollection, postLike:actionAddLike, postUnlike:actionRemoveLike})(Collection);

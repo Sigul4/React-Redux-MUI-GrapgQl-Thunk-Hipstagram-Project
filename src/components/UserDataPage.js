@@ -11,7 +11,7 @@ import CardMedia                from '@mui/material/CardMedia';
 import { red }                  from '@mui/material/colors';
 import Stack                    from '@mui/material/Stack';
 import { useEffect, useState }  from 'react';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import '../App.css';
 import deletePost               from "../helpers/deletePost";
@@ -23,6 +23,9 @@ import SavedCollections         from './SavedCollections';
 import actionProfileInf         from "../actions/actionProfileInf.js";
 import actionProfilePosts       from '../actions/actionProfilePosts';
 import actionProfileCollections from '../actions/actionProfileCollections';
+import actionFollow from '../actions/actionFollow';
+import actionUnfollow from '../actions/actionUnfollow';
+import actionChangeProfile from '../actions/actionChangeProfile';
 
 const UserPage = ({match: {params: {_id}}, onProfileChange, onFollow, onUnfollow, onLoadCollection }) => {
     
@@ -164,4 +167,5 @@ const UserPage = ({match: {params: {_id}}, onProfileChange, onFollow, onUnfollow
             </Box>
         )
 }
-export default UserPage;
+
+export const CProfilePage = connect(null, {onFollow: actionFollow, onUnfollow: actionUnfollow, onProfileChange:actionChangeProfile, onLoadCollection: actionProfileCollections})(UserPage);

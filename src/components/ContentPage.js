@@ -1,9 +1,12 @@
 import CardMedia                from '@mui/material/CardMedia';
 import List                     from '@mui/material/List';
 import { useEffect, useState }  from 'react';
-import { useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import actionAddLike from '../actions/actionAddLike';
+import actionAllPosts from '../actions/actionAllPosts';
 import actionProfileCollections from '../actions/actionProfileCollections';
+import actionRemoveLike from '../actions/actionRemoveLike';
 import '../App.css';
 import deletePost               from "../helpers/deletePost";
 import CreatePost               from './ChangePost.js';
@@ -84,4 +87,4 @@ function ContentPage({Post, aboutMe, onPostLoad}) {
     );
 }
 
-export default ContentPage;
+export const CPostsPage = connect(state => ({Post: state?.promise?.AllPosts?.payload, aboutMe: state?.promise?.aboutMe?.payload}), {onPostLoad: actionAllPosts, postLike:actionAddLike, postUnlike:actionRemoveLike}) (ContentPage);

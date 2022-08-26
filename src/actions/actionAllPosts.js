@@ -13,7 +13,7 @@ async (dispatch, getState) => {
     
     posts ? howMuchToSkip = posts.length: howMuchToSkip = 0 
 
-    console.log('howMuchToSkip',howMuchToSkip, posts)
+    // console.log('howMuchToSkip',howMuchToSkip, posts)
 
     const gqlQuery = 
     `query post($query:String){

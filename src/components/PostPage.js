@@ -1,12 +1,17 @@
 import { Button, Card, TextField }      from "@mui/material";
 import { Box }                          from "@mui/system";
 import React, { useEffect, useState }   from "react";
+import { connect } from "react-redux";
+import actionAddLike from "../actions/actionAddLike";
 import actionNewComment                 from "../actions/actionNewComment";
+import actionPostFind from "../actions/actionPostFind";
+import actionRemoveLike from "../actions/actionRemoveLike";
+import deletePost from "../helpers/deletePost";
 import CreatePost                       from "./ChangePost.js";
 import Comments                         from "./Comments";
 import Post                             from "./Post";
 
-export default function PostPage({match: {params: {_id}}, post, aboutMe, postLike, postUnlike, changePostsToDelete, recoverPost, onLoad}) {
+function PostPage({match: {params: {_id}}, post, aboutMe, postLike, postUnlike, changePostsToDelete, recoverPost, onLoad}) {
     const [changer, switchChange       ] = useState(true);
     const [postData, changeData        ] = useState(post);
     const [deletedPost, changeDeletness] = useState(false)
@@ -90,3 +95,5 @@ export default function PostPage({match: {params: {_id}}, post, aboutMe, postLik
         </Box>
     );
 }
+
+export const CPostPage = connect(state => ({post: state?.promise?.PostInf?.payload,  aboutMe: state?.promise?.aboutMe?.payload}), {onLoad:actionPostFind, postLike:actionAddLike, postUnlike:actionRemoveLike, changePostsToDelete:deletePost})(PostPage)

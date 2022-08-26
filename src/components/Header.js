@@ -17,7 +17,10 @@ import { alpha, styled }      from "@mui/material/styles";
 import Toolbar                from "@mui/material/Toolbar";
 import Typography             from "@mui/material/Typography";
 import * as React             from "react";
+import { connect } from "react-redux";
 import { Link }               from 'react-router-dom';
+import actionAuthLogout from "../actions/actionAuthLogout";
+import actionUserFind from "../actions/actionUserFind";
 import history                from '../data/history';
 import UsersSearch            from './UsersSearch';
 
@@ -48,7 +51,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 
-export default function Header({userNick, userId,userData, requiredNicknames,Logout, onChooseNick}) {
+function Header({userNick, userId,userData, requiredNicknames,Logout, onChooseNick}) {
   // console.log('userData',userData,userNick, userId)
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -218,3 +221,13 @@ export default function Header({userNick, userId,userData, requiredNicknames,Log
     </Box>
   );
 }
+
+export const CHeader = connect(
+  (state) => ({
+    userNick: state?.auth?.payload?.sub?.acl[1],
+    userId: state?.auth?.payload?.sub?.id,
+    userData: state?.promise?.aboutMe?.payload,
+    requiredNicknames: state?.promise?.requiredNicknames?.payload,
+  }),
+  { Logout: actionAuthLogout, onChooseNick: actionUserFind }
+)(Header);
